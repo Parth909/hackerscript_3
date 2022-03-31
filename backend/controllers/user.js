@@ -11,7 +11,7 @@ exports.readProfile = (req, res) => {
 };
 
 exports.updateProfile = (req, res) => {
-  const { name, password, categories } = req.body;
+  const { name, password } = req.body;
 
   switch (true) {
     case password && password.length < 6:
@@ -23,7 +23,7 @@ exports.updateProfile = (req, res) => {
 
   User.findOneAndUpdate(
     { _id: req.user._id },
-    { name, password, categories },
+    { name, password },
     { new: true }
   ).exec((err, updated) => {
     if (err) {
